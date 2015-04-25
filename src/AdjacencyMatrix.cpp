@@ -30,6 +30,7 @@ bool AdjacencyMatrix::createFromFile(string path) {
 		file >> vertexFirst;
 		matrix = new int *[edgeCount];
 		wage = new int *[edgeCount];
+
 		for (int i = 0; i < vertexCount; i++)
 		{
 			matrix[i]=new int[edgeCount];
@@ -38,19 +39,19 @@ bool AdjacencyMatrix::createFromFile(string path) {
 
 		//fill matrix by zeros
 		for (int i = 0; i < vertexCount; i++) {
-			for(int j=0; j<vertexCount;j++){
+
+			for(int j=0; j<edgeCount;j++){
 				matrix[i][j]=0;
 				wage[i][j]=0;
 				cout << matrix[i][j] << " " ;
 				cout << wage[i][j] << " ";
 			}
+
 		}
 		// fill matrix by 1
 		for(int i=0; i<edgeCount; i++){
 			int vertexF,vertexE,wag;
-			file >> vertexF;
-			file >> vertexE;
-			file >> wag;
+			file >> vertexF >> vertexE >> wag;
 			matrix[vertexF][vertexE]=1;
 			this->wage[vertexF][vertexE]=wag;
 		}
@@ -63,7 +64,7 @@ bool AdjacencyMatrix::createFromFile(string path) {
 
 void AdjacencyMatrix::viewMatrix(){
 	cout << " Adjacency Matrix ";
-	for(int i=0; i<edgeCount; i++)
+	for(int i=0; i<vertexCount; i++)
 	{
 			for(int j=0; i<edgeCount;i++){
 				i+=vertexFirst;
