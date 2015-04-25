@@ -22,12 +22,15 @@ AdjacencyMatrix::~AdjacencyMatrix() {
 
 bool AdjacencyMatrix::createFromFile(string path) {
 	fstream file;
-	file.open(path.c_str(), ios::in);
+	file.open(path.c_str(), fstream::in);
 	if (file.good()) {
-		//cout << "file opened" << endl;
-		file >> edgeCount;
-		file >> vertexCount;
-		file >> vertexFirst;
+		int a;
+		cout << "file opened" << endl;
+		file >> a;
+		cout << a;
+		file >> this->vertexCount;
+		file >> this->vertexFirst;
+
 		matrix = new int *[edgeCount];
 		wage = new int *[edgeCount];
 

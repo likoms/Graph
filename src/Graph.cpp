@@ -17,6 +17,5 @@ int main() {
 	//Screen screen;
 	//string path=screen.askForFilename();
 	am.createFromFile("matrix.txt");
-	am.viewMatrix();
 	return 0;
 }

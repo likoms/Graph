@@ -23,8 +23,6 @@ public:
 	bool createFromFile(string path);
 	void viewMatrix();
 
-
-
 private:
 	int vertexCount;
 	int vertexFirst;
