@@ -24,12 +24,18 @@ bool AdjacencyMatrix::createFromFile(string path) {
 	fstream file;
 	file.open(path.c_str(), ios::in);
 	if (file.good()) {
-		cout << "file opened" << endl;
-		file >> this->edgeCount;
-		file >> this->vertexCount;
-		file >> this->vertexFirst;
+		//cout << "file opened" << endl;
+		file >> edgeCount;
+		file >> vertexCount;
+		file >> vertexFirst;
 		matrix = new int *[edgeCount];
 		wage = new int *[edgeCount];
+		for (int i = 0; i < vertexCount; i++)
+		{
+			matrix[i]=new int[edgeCount];
+			wage[i]=new int[edgeCount];
+		}
+
 		//fill matrix by zeros
 		for (int i = 0; i < vertexCount; i++) {
 			for(int j=0; j<vertexCount;j++){
