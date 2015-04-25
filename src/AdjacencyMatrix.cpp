@@ -11,53 +11,60 @@ AdjacencyMatrix::AdjacencyMatrix() {
 	this->vertexCount=0;
 	this->vertexFirst=0;
 	this->edgeCount=0;
-	this->wage=0;
-	this->matrix=0;
+
 
 }
 
 AdjacencyMatrix::~AdjacencyMatrix() {
-	// TODO Auto-generated destructor stub
+
 }
 
 bool AdjacencyMatrix::createFromFile(string path) {
 	fstream file;
 	file.open(path.c_str(), fstream::in);
-	if (file.good()) {
-		int a;
-		cout << "file opened" << endl;
-		file >> a;
-		cout << a;
+	if (file.good())
+	{
+		int vertexF,vertexE,wag;
+		//cout << "file opened" << endl;
+		file >> this->edgeCount;
 		file >> this->vertexCount;
 		file >> this->vertexFirst;
 
-		matrix = new int *[edgeCount];
-		wage = new int *[edgeCount];
+		matrix = new int *[vertexCount];
+		wage   = new int *[vertexCount];
 
 		for (int i = 0; i < vertexCount; i++)
 		{
-			matrix[i]=new int[edgeCount];
-			wage[i]=new int[edgeCount];
+			matrix[i]=new int[vertexCount];
+			wage[i]=new int[vertexCount];
 		}
 
 		//fill matrix by zeros
-		for (int i = 0; i < vertexCount; i++) {
+		for (int i = 0; i < vertexCount; i++)
+		{
 
-			for(int j=0; j<edgeCount;j++){
+			for(int j=0; j<vertexCount;j++)
+			{
 				matrix[i][j]=0;
 				wage[i][j]=0;
-				cout << matrix[i][j] << " " ;
-				cout << wage[i][j] << " ";
+				//cout << matrix[i][j];
+				//cout << wage[i][j];
 			}
+			//cout << endl;
+		}
 
-		}
+
 		// fill matrix by 1
-		for(int i=0; i<edgeCount; i++){
-			int vertexF,vertexE,wag;
+
+		for(int i=0; i<edgeCount; i++)
+		{
 			file >> vertexF >> vertexE >> wag;
-			matrix[vertexF][vertexE]=1;
-			this->wage[vertexF][vertexE]=wag;
+			this->matrix[vertexF-1][vertexE-1]=1;
+			this->wage[vertexF-1][vertexE-1]=wag;
+			//cout << matrix[vertexF][vertexE];
+			//cout << wage[vertexF][vertexE];
 		}
+
 		file.close();
 		return true;
 	}
@@ -65,15 +72,31 @@ bool AdjacencyMatrix::createFromFile(string path) {
 	return false;
 }
 
+
+
 void AdjacencyMatrix::viewMatrix(){
-	cout << " Adjacency Matrix ";
-	for(int i=0; i<vertexCount; i++)
-	{
-			for(int j=0; i<edgeCount;i++){
-				i+=vertexFirst;
-				cout << this->matrix[i][j] << " ";
+	cout << " Adjacency Matrix " << endl;
+	for (int i = 0; i < vertexCount; i++)
+			{
+
+				for(int j=0; j<edgeCount;j++)
+				{
+					cout << matrix[i][j];
+
+				}
+				cout << endl;
 			}
-			cout<< endl;
-	}
+	cout << " Matrix wages " << endl;
+	for (int i = 0; i < vertexCount; i++)
+				{
+
+					for(int j=0; j<edgeCount;j++)
+					{
+						cout << " "<<wage[i][j] << " ";
+
+					}
+					cout << endl;
+				}
+
 }
 

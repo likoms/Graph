@@ -17,11 +17,6 @@ using namespace std;
 
 
 class AdjacencyMatrix{
-public:
-	AdjacencyMatrix();
-	virtual ~AdjacencyMatrix();
-	bool createFromFile(string path);
-	void viewMatrix();
 
 private:
 	int vertexCount;
@@ -29,6 +24,14 @@ private:
 	int edgeCount;
 	int **wage;
 	int **matrix;
+
+public:
+	AdjacencyMatrix();
+	virtual ~AdjacencyMatrix();
+	bool createFromFile(string path);
+	void viewMatrix();
+
+
 
 };
 
