@@ -5,6 +5,7 @@
  *      Author: Piotr
  */
 
+#pragma once
 #ifndef ADJACENCYMATRIX_H_
 #define ADJACENCYMATRIX_H_
 #include <iostream>
@@ -12,6 +13,7 @@
 #include <cstring>
 #include <cstdio>
 #include <cstdlib>
+#include <climits>
 using namespace std;
 
 
@@ -24,15 +26,34 @@ private:
 	int edgeCount;
 	int **wage;
 	int **matrix;
+	int *distance;
+	bool *spt;
+	int minimumValue;
+	int minimumIndex;
+
+
+
 
 public:
 	AdjacencyMatrix();
 	virtual ~AdjacencyMatrix();
 	bool createFromFile(string path);
 	void viewMatrix();
+	//
+	int minDist(int *distance, bool *spt);
+	void viewDijkstra();
+	bool makeDijkstraAlgo();
 
-
-
+	//getters and setters
+	int getEdgeCount() const;
+	void setEdgeCount(int edgeCount);
+	int** getMatrix() const;
+	void setMatrix(int** matrix);
+	int getVertexCount() const;
+	void setVertexCount(int vertexCount);
+	int getVertexFirst() const;
+	void setVertexFirst(int vertexFirst);
+	int **getWage() const;
 };
 
 #endif /* ADJACENCYMATRIX_H_ */

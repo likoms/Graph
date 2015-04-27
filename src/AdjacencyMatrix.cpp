@@ -4,6 +4,8 @@
  *  Created on: 23 kwi 2015
  *      Author: Piotr
  */
+// TODO think about means of vertexFirst;
+// TODO dij and bell algo
 
 #include "AdjacencyMatrix.h"
 
@@ -11,6 +13,13 @@ AdjacencyMatrix::AdjacencyMatrix() {
 	this->vertexCount=0;
 	this->vertexFirst=0;
 	this->edgeCount=0;
+	this->matrix=0;
+	this->wage=0;
+	//
+	this->distance=0;
+	this->spt=0;
+	this->minimumValue=INT_MAX;
+	this->minimumIndex=0;
 
 
 }
@@ -18,6 +27,7 @@ AdjacencyMatrix::AdjacencyMatrix() {
 AdjacencyMatrix::~AdjacencyMatrix() {
 
 }
+
 
 bool AdjacencyMatrix::createFromFile(string path) {
 	fstream file;
@@ -71,9 +81,6 @@ bool AdjacencyMatrix::createFromFile(string path) {
 	cout << "File does not opened" << endl;
 	return false;
 }
-
-
-
 void AdjacencyMatrix::viewMatrix(){
 	cout << " Adjacency Matrix " << endl;
 	for (int i = 0; i < vertexCount; i++)
@@ -99,4 +106,94 @@ void AdjacencyMatrix::viewMatrix(){
 				}
 
 }
+//Dijkstra
+int AdjacencyMatrix::minDist(int *distance, bool *spt){
+	for(int i=vertexFirst; i<vertexCount+vertexFirst; i++)
+	{
+			if(spt[i]==false && distance[i]<=minimumValue){
+				minimumValue = distance[i];
+				minimumIndex=i;
+			}
+		}
+
+		return minimumValue;
+}
+void AdjacencyMatrix::viewDijkstra()
+{
+	for(int i=0; i<vertexCount;i++)
+	{
+		cout <<"Vertex " << i+1 << " : " << distance[i]<< endl;
+	}
+
+	}
+bool AdjacencyMatrix::makeDijkstraAlgo(){
+	    cout << "IN " <<endl;
+
+		distance=new int[vertexCount];
+		spt=new bool[vertexCount];
+
+		for(int i=0; i<vertexCount;i++)
+		{
+			distance[i]=INT_MAX;
+			spt[i]=false;
+		}
+
+		distance[vertexFirst-1]=0;
+		for(int i=0; i<vertexCount-1;i++)
+			{
+				int minimumDistance= minDist(distance,spt);
+				spt[minimumDistance]=true;
+				for(int i=0;i<vertexCount;i++)
+				{
+					//cout << "test" ;
+					if(!spt[i] && wage[minimumDistance][i] && distance[minimumDistance]!=INT_MAX
+							&& distance[minimumDistance]+wage[minimumDistance][i]<distance[i])
+					{
+						cout << "test" ;
+						distance[i]=distance[minimumDistance]+wage[minimumDistance][i];
+					}
+				}
+
+			}
+		return true;
+	}
+
+
+
+int AdjacencyMatrix::getEdgeCount() const {
+	return edgeCount;
+}
+
+void AdjacencyMatrix::setEdgeCount(int edgeCount) {
+	this->edgeCount = edgeCount;
+}
+
+int** AdjacencyMatrix::getMatrix() const {
+	return matrix;
+}
+
+void AdjacencyMatrix::setMatrix(int** matrix) {
+	this->matrix = matrix;
+}
+
+int AdjacencyMatrix::getVertexCount() const {
+	return vertexCount;
+}
+
+void AdjacencyMatrix::setVertexCount(int vertexCount) {
+	this->vertexCount = vertexCount;
+}
+
+int AdjacencyMatrix::getVertexFirst() const {
+	return vertexFirst;
+}
+
+void AdjacencyMatrix::setVertexFirst(int vertexFirst) {
+	this->vertexFirst = vertexFirst;
+}
+
+int** AdjacencyMatrix::getWage() const {
+	return wage;
+}
+
 

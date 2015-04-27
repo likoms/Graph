@@ -8,12 +8,12 @@
 #include "Screen.h"
 
 Screen::Screen() {
-	// TODO Auto-generated constructor stub
+
 
 }
 
 Screen::~Screen() {
-	// TODO Auto-generated destructor stub
+
 }
 
 int Screen::displayFirstScreen(){
