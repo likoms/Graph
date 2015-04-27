@@ -39,6 +39,9 @@ bool AdjacencyMatrix::createFromFile(string path) {
 		file >> this->edgeCount;
 		file >> this->vertexCount;
 		file >> this->vertexFirst;
+		//cout << this->edgeCount;
+		//cout << this->vertexCount;
+		//cout << this->vertexFirst;
 
 		matrix = new int *[vertexCount];
 		wage   = new int *[vertexCount];
@@ -69,8 +72,8 @@ bool AdjacencyMatrix::createFromFile(string path) {
 		for(int i=0; i<edgeCount; i++)
 		{
 			file >> vertexF >> vertexE >> wag;
-			this->matrix[vertexF-1][vertexE-1]=1;
-			this->wage[vertexF-1][vertexE-1]=wag;
+			this->matrix[vertexF][vertexE]=1;
+			this->wage[vertexF][vertexE]=wag;
 			//cout << matrix[vertexF][vertexE];
 			//cout << wage[vertexF][vertexE];
 		}
@@ -78,7 +81,7 @@ bool AdjacencyMatrix::createFromFile(string path) {
 		file.close();
 		return true;
 	}
-	cout << "File does not opened" << endl;
+	//cout << "File does not opened" << endl;
 	return false;
 }
 void AdjacencyMatrix::viewMatrix(){
@@ -86,7 +89,7 @@ void AdjacencyMatrix::viewMatrix(){
 	for (int i = 0; i < vertexCount; i++)
 			{
 
-				for(int j=0; j<edgeCount;j++)
+				for(int j=0; j<vertexCount;j++)
 				{
 					cout << matrix[i][j];
 
@@ -97,7 +100,7 @@ void AdjacencyMatrix::viewMatrix(){
 	for (int i = 0; i < vertexCount; i++)
 				{
 
-					for(int j=0; j<edgeCount;j++)
+					for(int j=0; j<vertexCount;j++)
 					{
 						cout << " "<<wage[i][j] << " ";
 
@@ -118,6 +121,12 @@ int AdjacencyMatrix::minDist(int *distance, bool *spt){
 
 		return minimumValue;
 }
+
+bool AdjacencyMatrix::makeDijkstraAlgo(){
+
+		return false;
+	}
+
 void AdjacencyMatrix::viewDijkstra()
 {
 	for(int i=0; i<vertexCount;i++)
@@ -125,40 +134,7 @@ void AdjacencyMatrix::viewDijkstra()
 		cout <<"Vertex " << i+1 << " : " << distance[i]<< endl;
 	}
 
-	}
-bool AdjacencyMatrix::makeDijkstraAlgo(){
-	    cout << "IN " <<endl;
-
-		distance=new int[vertexCount];
-		spt=new bool[vertexCount];
-
-		for(int i=0; i<vertexCount;i++)
-		{
-			distance[i]=INT_MAX;
-			spt[i]=false;
-		}
-
-		distance[vertexFirst-1]=0;
-		for(int i=0; i<vertexCount-1;i++)
-			{
-				int minimumDistance= minDist(distance,spt);
-				spt[minimumDistance]=true;
-				for(int i=0;i<vertexCount;i++)
-				{
-					//cout << "test" ;
-					if(!spt[i] && wage[minimumDistance][i] && distance[minimumDistance]!=INT_MAX
-							&& distance[minimumDistance]+wage[minimumDistance][i]<distance[i])
-					{
-						cout << "test" ;
-						distance[i]=distance[minimumDistance]+wage[minimumDistance][i];
-					}
-				}
-
-			}
-		return true;
-	}
-
-
+}
 
 int AdjacencyMatrix::getEdgeCount() const {
 	return edgeCount;
