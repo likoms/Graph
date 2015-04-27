@@ -18,12 +18,12 @@ int main() {
 	Dijkstra dijkstra;
 	//string path=screen.askForFilename();
 	am.createFromFile("matrix.txt");
-	am.viewMatrix();
+	//am.viewMatrix();
 	int first=am.getVertexFirst();
 	//dijkstra.makeDijkstraAlgo(first);
 	//dijkstra.viewDijkstra();
-	cout << first;
-	//am.makeDijkstraAlgo();
-	//am.viewDijkstra();
+	//cout << first;
+	am.makeDijkstraAlgo();
+	am.viewDijkstra();
 	return 0;
 }
