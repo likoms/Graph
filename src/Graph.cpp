@@ -13,19 +13,24 @@
 using namespace std;
 
 int main() {
+	cout << "memle";
 	AdjacencyMatrix am;
 	Screen screen;
 	Dijkstra dijkstra;
 	FordBellman fb;
 	//string path=screen.askForFilename();
-	am.createFromFile("matrix.txt");
-	//am.viewMatrix();
 
+	am.createFromFile("matrix.txt");
+
+	fb.algorithm(am);
+	//fb.view(am);
+
+
+	//am.viewMatrix();
 	//dijkstra.makeDijkstraAlgo(am);
 	//dijkstra.viewDijkstra(am);
-	fb.initialize(am);
 	//fb.algorithm(am);
-	//fb.view();
+	//fb.view(am);
 	//cout << first;
 
 

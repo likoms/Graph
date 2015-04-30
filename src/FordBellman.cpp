@@ -9,13 +9,9 @@
 
 
 FordBellman::FordBellman() {
-	this->vertexCount=0;
-	this->vertexFirst=0;
-	this->edgeCount=0;
-	this->wage=0;
-	this->matrix=0;
 	this->distance=0;
 	this->predecessor=0;
+	am = 0;
 
 }
 
@@ -25,17 +21,20 @@ FordBellman::~FordBellman() {
 
 
 
-
-void FordBellman::initialize(const AdjacencyMatrix &am)
+void FordBellman::initialize(const AdjacencyMatrix& am)
 {
-	this->vertexCount=am.getVertexCount();
-	this->vertexFirst=am.getVertexFirst();
-	this->edgeCount=am.getEdgeCount();
-	this->wage=am.getWage();
-	this->matrix=am.getMatrix();
-	cout << vertexCount;
-	cout << vertexFirst;
+	//cout << "Mess";
+
+	int vertexCount=am.getVertexCount();
+	int vertexFirst=am.getVertexFirst();
+	//int edgeCount=am.getEdgeCount();
+	//int **wage=am.getWage();
+	//int **matrix=am.getMatrix();
+
+	//cout << vertexCount;
+	//cout << vertexFirst;
 int *distance= new int[vertexCount];
+int *predecessor= new int[vertexCount];
 for(int i=1;i<=vertexCount;i++)
  {
    distance[i]=INT_MAX;
@@ -44,8 +43,10 @@ for(int i=1;i<=vertexCount;i++)
  distance[vertexFirst]=0;
 }
 
-void FordBellman::update()
+void FordBellman::update(const AdjacencyMatrix& am)
 {
+	int vertexCount = am.getVertexCount();
+		int **wage=am.getWage();
  for(int i=1;i<=vertexCount-1;i++)
  {
   for(int u=1;u<=vertexCount;u++)
@@ -58,6 +59,8 @@ void FordBellman::update()
      {
       distance[v]=distance[u]+wage[u][v];
       predecessor[v]=u;
+      //cout << distance[v];
+      //cout << predecessor[v];
      }
     }
    }
@@ -65,9 +68,11 @@ void FordBellman::update()
  }
 }
 
-void FordBellman::check()
+void FordBellman::check(const AdjacencyMatrix &am)
 {
- for(int u=1;u<=vertexCount;u++)
+	int vertexCount = am.getVertexCount();
+	int **wage=am.getWage();
+	for(int u=1;u<=vertexCount;u++)
  {
   for(int v=1;v<=vertexCount;v++)
   {
@@ -85,7 +90,8 @@ void FordBellman::check()
 cout << "\n\nThere is no negative weight cycle and\n";
 }
 
-void FordBellman::view(){
+void FordBellman::view(const AdjacencyMatrix &am){
+	int vertexCount=am.getVertexCount();
 	cout <<" ****** The final paths and the distacnes are ******\n\n";
 	for(int i=0;i<vertexCount;i++){
 		cout << "Vertex" << i << " : " << distance[i]<<endl ;
@@ -94,9 +100,9 @@ void FordBellman::view(){
 }
 
 
-void FordBellman::algorithm(const AdjacencyMatrix &am)
+void FordBellman::algorithm(AdjacencyMatrix &am)
 {
  initialize(am);
- update();
- check();
+ update(am);
+ check(am);
 }

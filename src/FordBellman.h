@@ -8,25 +8,24 @@
 #ifndef FORDBELLMAN_H_
 #define FORDBELLMAN_H_
 #include "AdjacencyMatrix.h"
+#include <climits>
 
-class FordBellman {
+
+
+class FordBellman{
 public:
 	FordBellman();
 	virtual ~FordBellman();
+	void initialize(const AdjacencyMatrix& am);
+	void update(const AdjacencyMatrix& am);
+	void check(const AdjacencyMatrix &am);
+	void algorithm(AdjacencyMatrix &am);
+	void view(const AdjacencyMatrix &am);
 
-	void initialize(const AdjacencyMatrix &am);
-	void update();
-	void check();
-	void algorithm(const AdjacencyMatrix &am);
-	void view();
 private:
-	int vertexCount;
-	int vertexFirst;
-	int edgeCount;
-	int **wage;
-	int **matrix;
 	int *distance;
 	int *predecessor;
+	AdjacencyMatrix *am;
 
 
 
