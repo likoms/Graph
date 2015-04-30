@@ -17,7 +17,7 @@ public:
 	virtual ~Dijkstra();
 	int minDist(int *distance, bool *spt);
 	void viewDijkstra();
-	bool makeDijkstraAlgo();
+	bool makeDijkstraAlgo(const AdjacencyMatrix& am);
 
 
 private:

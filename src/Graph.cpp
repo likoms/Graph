@@ -19,7 +19,7 @@ int main() {
 	am.createFromFile("matrix.txt");
 	//am.viewMatrix();
 
-	dijkstra.makeDijkstraAlgo();
+	dijkstra.makeDijkstraAlgo(am);
 	dijkstra.viewDijkstra();
 	//cout << first;
 

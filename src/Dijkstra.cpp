@@ -7,7 +7,7 @@
 
 #include "Dijkstra.h"
 
-AdjacencyMatrix am;
+
 
 
 Dijkstra::Dijkstra() {
@@ -33,7 +33,7 @@ int Dijkstra::minDist(int *distance, bool *spt){
 		   return min_index;
 }
 
-bool Dijkstra::makeDijkstraAlgo()
+bool Dijkstra::makeDijkstraAlgo(const AdjacencyMatrix& am)
 {
 
 	int vertexCount=am.getVertexCount();

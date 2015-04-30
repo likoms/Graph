@@ -10,14 +10,6 @@
 #include "AdjacencyMatrix.h"
 
 AdjacencyMatrix::AdjacencyMatrix() {
-	this->vertexCount=0;
-	this->vertexFirst=0;
-	this->edgeCount=0;
-	this->matrix=0;
-	this->wage=0;
-	//
-
-
 
 }
 
@@ -27,10 +19,16 @@ AdjacencyMatrix::~AdjacencyMatrix() {
 
 
 bool AdjacencyMatrix::createFromFile(string path) {
+	this->vertexCount=0;
+	this->vertexFirst=0;
+	this->edgeCount=0;
+	this->matrix=0;
+	this->wage=0;
 	fstream file;
 	file.open(path.c_str(), fstream::in);
 	if (file.good())
 	{
+
 		int vertexF,vertexE,wag;
 		//cout << "file opened" << endl;
 		file >> this->edgeCount;
