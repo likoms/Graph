@@ -26,10 +26,8 @@ private:
 	int edgeCount;
 	int **wage;
 	int **matrix;
-	int *distance;
-	bool *spt;
-	int minimumValue;
-	int minimumIndex;
+
+
 
 
 
@@ -39,10 +37,9 @@ public:
 	virtual ~AdjacencyMatrix();
 	bool createFromFile(string path);
 	void viewMatrix();
+
 	//
-	int minDist(int *distance, bool *spt);
-	void viewDijkstra();
-	bool makeDijkstraAlgo();
+
 
 	//getters and setters
 	int getEdgeCount() const;

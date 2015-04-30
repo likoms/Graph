@@ -17,13 +17,13 @@ public:
 	virtual ~Dijkstra();
 	int minDist(int *distance, bool *spt);
 	void viewDijkstra();
-	bool makeDijkstraAlgo(int first);
+	bool makeDijkstraAlgo();
+
 
 private:
 	int *distance;
 	bool *spt;
-	int minimumValue=INT_MAX;
-	int minimumIndex;
+
 
 };
 

@@ -16,10 +16,7 @@ AdjacencyMatrix::AdjacencyMatrix() {
 	this->matrix=0;
 	this->wage=0;
 	//
-	this->distance=0;
-	this->spt=0;
-	this->minimumValue=INT_MAX;
-	this->minimumIndex=0;
+
 
 
 }
@@ -109,58 +106,11 @@ void AdjacencyMatrix::viewMatrix(){
 				}
 
 }
-//Dijkstra
 
-//Algorithm find vertex with minimum distance value
 
-int AdjacencyMatrix::minDist(int *distance, bool *spt){
-	for(int i=vertexFirst; i<vertexCount+vertexFirst; i++)
-	{
-			if(spt[i]==false && distance[i]<=minimumValue){
-				minimumValue = distance[i];
-				minimumIndex=i;
-			}
-		}
 
-		return minimumValue;
-}
 
-bool AdjacencyMatrix::makeDijkstraAlgo(){
-	distance=new int[vertexCount]; //store shortest distance from 0 to i
-		spt=new bool[vertexCount];     //return true for SPT distance from start to i
 
-		//Initialize by INTMAX and false
-		for(int i=0;i<vertexCount;i++)
-		{
-			spt[i]=false;
-			distance[i]=INT_MAX;
-		}
-		distance[vertexFirst]=0; // because from first to first vertex is 0, because we don't move
-		for(int i=0;i<vertexCount-1;i++)
-		{
-			int minimumDistance=minDist(distance,spt); // pick the minimum distance
-			spt[minimumDistance]=true;                 // Mark this minimum vertex as true
-
-			for(int i=0;i<vertexCount;i++)
-			{
-				if(!spt[i] && wage[minimumDistance][i] && distance[minimumDistance]!=INT_MAX
-									&& distance[minimumDistance]+wage[minimumDistance][i]<distance[i])
-							{
-								distance[i]=distance[minimumDistance]+wage[minimumDistance][i];
-							}
-			}
-
-		}
-		return true;
-	}
-
-void AdjacencyMatrix::viewDijkstra()
-{
-	for(int i=0; i<vertexCount;i++){
-			cout <<"Vertex " << i << " : " << distance[i] << endl;
-		}
-
-}
 
 int AdjacencyMatrix::getEdgeCount() const {
 	return edgeCount;

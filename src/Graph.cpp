@@ -8,7 +8,6 @@
 
 #include <iostream>
 #include "Dijkstra.h"
-#include "AdjacencyMatrix.h"
 #include "Screen.h"
 using namespace std;
 
@@ -19,11 +18,12 @@ int main() {
 	//string path=screen.askForFilename();
 	am.createFromFile("matrix.txt");
 	//am.viewMatrix();
-	int first=am.getVertexFirst();
-	//dijkstra.makeDijkstraAlgo(first);
-	//dijkstra.viewDijkstra();
+
+	dijkstra.makeDijkstraAlgo();
+	dijkstra.viewDijkstra();
 	//cout << first;
-	am.makeDijkstraAlgo();
-	am.viewDijkstra();
+
+
+	//cout << am.dijkstras();
 	return 0;
 }
