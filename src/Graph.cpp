@@ -20,7 +20,7 @@ int main() {
 	//am.viewMatrix();
 
 	dijkstra.makeDijkstraAlgo(am);
-	dijkstra.viewDijkstra();
+	dijkstra.viewDijkstra(am);
 	//cout << first;
 
 

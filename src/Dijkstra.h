@@ -15,8 +15,8 @@ class Dijkstra {
 public:
 	Dijkstra();
 	virtual ~Dijkstra();
-	int minDist(int *distance, bool *spt);
-	void viewDijkstra();
+	int minDist(int *distance, bool *spt,int vertexCount);
+	void viewDijkstra(const AdjacencyMatrix& am);
 	bool makeDijkstraAlgo(const AdjacencyMatrix& am);
 
 

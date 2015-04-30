@@ -21,11 +21,11 @@ Dijkstra::Dijkstra() {
 Dijkstra::~Dijkstra() {
 
 }
-int Dijkstra::minDist(int *distance, bool *spt){
+int Dijkstra::minDist(int *distance, bool *spt,int vertexCount){
 	 // Initialize min value
 
 		   int min = INT_MAX, min_index;
-		   int vertexCount=am.getVertexCount();
+
 		   for (int v = 0; v < vertexCount; v++)
 		     if (spt[v] == false && distance[v] <= min)
 		         min = distance[v], min_index = v;
@@ -39,8 +39,7 @@ bool Dijkstra::makeDijkstraAlgo(const AdjacencyMatrix& am)
 	int vertexCount=am.getVertexCount();
 	int vertexFirst=am.getVertexFirst();
 	int **wage=am.getWage();
-	cout << vertexCount;
-	cout << vertexFirst;
+
 	distance=new int[vertexCount]; //store shortest distance from 0 to i
 			spt=new bool[vertexCount];     //return true for SPT distance from start to i
 
@@ -57,8 +56,8 @@ bool Dijkstra::makeDijkstraAlgo(const AdjacencyMatrix& am)
 			     {
 			       // Pick the minimum distance vertex from the set of vertices not
 			       // yet processed. u is always equal to src in first iteration.
-			       int u = minDist(distance, spt);
-			       cout << u;
+			       int u = minDist(distance, spt,vertexCount);
+
 
 			       // Mark the picked vertex as processed
 			       spt[u] = true;
@@ -79,7 +78,7 @@ bool Dijkstra::makeDijkstraAlgo(const AdjacencyMatrix& am)
 
 
 
-void Dijkstra::viewDijkstra(){
+void Dijkstra::viewDijkstra(const AdjacencyMatrix& am){
 
 	for(int i=0; i<am.getVertexCount();i++){
 		cout <<"Vertex " << i << " : " << distance[i] << endl;
