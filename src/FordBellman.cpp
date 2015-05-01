@@ -8,7 +8,7 @@
 #include "FordBellman.h"
 
 FordBellman::FordBellman() {
-	infinity = INT_MAX;
+
 
 }
 
@@ -17,6 +17,8 @@ FordBellman::~FordBellman() {
 }
 
 void FordBellman::BellmanFord(const AdjacencyMatrix& am) {
+	const int infinity=10000;
+	int N=-1;
 	int vertexCount = am.getVertexCount();
 	int vertexFirst = am.getVertexFirst();
 	int **wage = am.getWage();
@@ -29,38 +31,31 @@ void FordBellman::BellmanFord(const AdjacencyMatrix& am) {
 	// Step 1: Initialize distances from src to all other vertices as INFINITE
 	for (int i = 0; i < vertexCount; i++) {
 		dist[i] = infinity;
+		prev[i]=-1;
 	}
 	dist[vertexFirst] = 0;
 
 	// Step 2: Relax all edges |V| - 1 times. A simple shortest path from src
 	// to any other vertex can have at-most |V| - 1 edges
 	// iterate for all vertex
-	for (int k = 0; k < vertexCount - 1; k++) {
-		//Iterate for source vertex
+	for (int k = 0; k < vertexCount-1; k++) {
+		//Iterate for source vertexx
 		for (int source = 0; source < vertexCount; source++) {
 			// iterate for destination vertex
 			for (int dest = 0; dest < vertexCount; dest++)
 			{
 				//cout << wage[source][dest];
+				if (dist[dest]+wage[source][dest]>infinity)
+				N=infinity;
+				else
+				N=dist[dest]+wage[source][dest];
+				dist[dest]=min(dist[dest],N);
 
-				if (dist[dest]==infinity)
-				{
-					if (dist[source] + wage[source][dest] > infinity) {
-						dist[dest] = dist[source] + wage[source][dest];
-						prev[dest] = source;
-					}
-				}else
-				{
-					if (dist[source] + wage[source][dest] < dist[dest])
-					{
-							dist[dest] = dist[source] + wage[source][dest];
-					}
-				}
 				//for second iteration
 
 
 			}
-			cout << endl;
+			//cout << endl;
 
 		}
 	}

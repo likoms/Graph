@@ -8,6 +8,7 @@
 #ifndef FORDBELLMAN_H_
 #define FORDBELLMAN_H_
 #include "AdjacencyMatrix.h"
+#include <algorithm>
 #include <climits>
 
 
@@ -20,7 +21,7 @@ public:
 
 
 private:
-	int infinity;
+	//int infinity;
 
 
 
