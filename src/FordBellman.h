@@ -16,16 +16,12 @@ class FordBellman{
 public:
 	FordBellman();
 	virtual ~FordBellman();
-	void initialize(const AdjacencyMatrix& am);
-	void update(const AdjacencyMatrix& am);
-	void check(const AdjacencyMatrix &am);
-	void algorithm(AdjacencyMatrix &am);
-	void view(const AdjacencyMatrix &am);
+	void BellmanFord(const AdjacencyMatrix& am);
+
 
 private:
-	int *distance;
-	int *predecessor;
-	AdjacencyMatrix *am;
+	int infinity;
+
 
 
 

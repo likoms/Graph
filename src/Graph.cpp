@@ -13,7 +13,7 @@
 using namespace std;
 
 int main() {
-	cout << "memle";
+
 	AdjacencyMatrix am;
 	Screen screen;
 	Dijkstra dijkstra;
@@ -21,8 +21,7 @@ int main() {
 	//string path=screen.askForFilename();
 
 	am.createFromFile("matrix.txt");
-
-	fb.algorithm(am);
+	fb.BellmanFord(am);
 	//fb.view(am);
 
 
