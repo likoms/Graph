@@ -4,7 +4,7 @@
  *  Created on: Apr 30, 2015
  *      Author: piotr
  */
-
+//TODO refactor graph
 #include "FordBellman.h"
 
 FordBellman::FordBellman() {

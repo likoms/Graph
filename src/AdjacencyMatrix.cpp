@@ -4,8 +4,8 @@
  *  Created on: 23 kwi 2015
  *      Author: Piotr
  */
-// TODO think about means of vertexFirst;
-// TODO dij and bell algo
+
+// TODO Random graph
 
 #include "AdjacencyMatrix.h"
 
