@@ -30,55 +30,43 @@ void FordBellman::BellmanFord(const AdjacencyMatrix& am) {
 
 	// Step 1: Initialize distances from src to all other vertices as INFINITE
 	for (int i = 0; i < vertexCount; i++) {
+
 		dist[i] = infinity;
 		prev[i]=-1;
 	}
-	dist[vertexFirst] = 0;
 
+	dist[vertexFirst] = 0;
 	// Step 2: Relax all edges |V| - 1 times. A simple shortest path from src
 	// to any other vertex can have at-most |V| - 1 edges
 	// iterate for all vertex
 	for (int k = 0; k < vertexCount-1; k++) {
 		//Iterate for source vertexx
-		for (int source = 0; source < vertexCount; source++) {
+		for (int i = 0; i < vertexCount; i++)
+		{
 			// iterate for destination vertex
-			for (int dest = 0; dest < vertexCount; dest++)
+			for (int j = 0; j < vertexCount; j++)
 			{
-				//cout << wage[source][dest];
-				if (dist[dest]+wage[source][dest]>infinity)
-				N=infinity;
-				else
-				N=dist[dest]+wage[source][dest];
-				dist[dest]=min(dist[dest],N);
 
-				//for second iteration
-
-
-			}
-			//cout << endl;
+				 if (dist[i] > dist[j] + wage[j][i] && wage[j][i]!=0) {
+				                    dist[i] = dist[j] + wage[j][i];
+				                }
 
 		}
 	}
+}
+
+	for (int i = 0; i < vertexCount; i++) {
+	        for (int j = 0; j < vertexCount; j++) {
+	            if (dist[i] > dist[j] + wage[j][i] && wage[j][i]!=0) {
+	                cout << "The graph contains a negative cycle!";
+	            }
+	        }
+	    }
 	//print out
 	for (int i = 0; i < vertexCount; i++) {
 		cout << dist[i] << endl;
 	}
 
-	// Step 3: check for negative-weight cycles.  The above step guarantees
-	// shortest distances if graph doesn't contain negative weight cycle.
-	// If we get a shorter path, then there is a cycle.
-	/*
-	 for (int i = 0; i < E; i++)
-	 {
-	 int u = graph->edge[i].src;
-	 int v = graph->edge[i].dest;
-	 int weight = graph->edge[i].weight;
-	 if (dist[u] != INT_MAX && dist[u] + weight < dist[v])
-	 printf("Graph contains negative weight cycle");
-	 }
-
-	 printArr(dist, V);
-	 */
 
 	delete[] dist;
 	delete[] prev;
