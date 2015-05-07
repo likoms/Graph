@@ -85,7 +85,11 @@ bool makeAlgo(const AdjacencyMatrix& am)
 	}
 	for(int i=0;i<edgeCount;i++)
 	{
-
+		if(!visitE)
+		{
+			cout << startIdx<<endl;
+			cout << endIdx<<endl;
+		}
 	}
 
 	return true;

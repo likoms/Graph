@@ -10,6 +10,7 @@
 #include "Dijkstra.h"
 #include "FordBellman.h"
 #include "Screen.h"
+#include "Kruskal.h"
 using namespace std;
 
 int main() {
@@ -18,10 +19,12 @@ int main() {
 	Screen screen;
 	Dijkstra dijkstra;
 	FordBellman fb;
+	Kruskal kl;
 	//string path=screen.askForFilename();
 
 	am.createFromFile("matrix.txt");
-	fb.BellmanFord(am);
+	kl.makeAlgo(am);
+	//fb.BellmanFord(am);
 	//fb.view(am);
 
 
