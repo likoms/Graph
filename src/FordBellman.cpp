@@ -18,7 +18,7 @@ FordBellman::~FordBellman() {
 
 void FordBellman::BellmanFord(const AdjacencyMatrix& am) {
 	const int infinity=10000;
-	int N=-1;
+
 	int vertexCount = am.getVertexCount();
 	int vertexFirst = am.getVertexFirst();
 	int **wage = am.getWage();
