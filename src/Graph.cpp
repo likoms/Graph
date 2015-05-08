@@ -22,7 +22,7 @@ int main() {
 	Kruskal kl;
 	//string path=screen.askForFilename();
 
-	am.createFromFile("matrix.txt");
+	am.createFromFile("kruskal.txt");
 	kl.makeAlgo(am);
 	//fb.BellmanFord(am);
 	//fb.view(am);

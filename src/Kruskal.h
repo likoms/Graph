@@ -14,6 +14,8 @@ public:
 	Kruskal();
 	virtual ~Kruskal();
 	bool makeAlgo(const AdjacencyMatrix& am);
+
+
 };
 
 #endif /* KRUSKAL_H_ */

@@ -16,7 +16,7 @@ Kruskal::~Kruskal() {
 	// TODO Auto-generated destructor stub
 }
 
-bool makeAlgo(const AdjacencyMatrix& am)
+bool Kruskal::makeAlgo(const AdjacencyMatrix& am)
 {
 
 	int index=0;
@@ -29,7 +29,7 @@ bool makeAlgo(const AdjacencyMatrix& am)
 	int *wageArray=new int[edgeCount];
 	int *startIdx=new int[edgeCount];
 	int *endIdx=new int[edgeCount];
-	int *mst=new int[edgeCount];
+	int *mstList=new int[edgeCount];
 	bool *visitS=new bool[edgeCount];
 	bool *visitE=new bool[edgeCount];
 
@@ -40,7 +40,7 @@ bool makeAlgo(const AdjacencyMatrix& am)
 		endIdx=new int[edgeCount];
 		visitS[i]=false;
 		visitE[i]=false;
-		mst[i]=0;
+		mstList[i]=0;
 	}
 	for(int i=0;i<vertexCount;i++)
 	{
@@ -57,13 +57,22 @@ bool makeAlgo(const AdjacencyMatrix& am)
 
 	}
 
-	for( int i = 0; i < vertexCount; i++ )
+/*for(int i=0;i<edgeCount;i++)cout << startIdx[i]<< " " ;
+		cout << endl;
+		for(int i=0;i<edgeCount;i++)cout << endIdx[i]<< " " ;
+		cout << endl;
+		for(int i=0;i<edgeCount;i++)cout << wageArray[i]<< " " ;
+		cout << "______________________"<< endl;
+*/
+	//sortujemy tablice
+	for( int i = 0; i < edgeCount; i++ )
 	    {
-	        for( int j = 0; j < vertexCount - 1; j++ )
+	        for( int j = 0; j < edgeCount-1; j++ )
 	        {
 	            if( wageArray[ j ] > wageArray[ j + 1 ] )
 	            {
-	                 swap( wageArray[ j ], wageArray[ j + 1 ] );
+
+	            	swap( wageArray[ j ], wageArray[ j + 1 ] );
 	                 swap( startIdx[ j ], startIdx[ j + 1 ] );
 	                 swap( endIdx[ j ], endIdx[ j + 1 ] );
 	            }
@@ -71,26 +80,43 @@ bool makeAlgo(const AdjacencyMatrix& am)
 	        }
 	    }
 
-	for(int i=0;i<edgeCount;i++)
+	// przeglądamy wierzchołki
+	/*for(int i=0;i<edgeCount;i++)
 	{
 		indexVisitS=startIdx[i];
 		indexVisitE=endIdx[i];
 		if(!visitS[indexVisitS] && !visitE[indexVisitE])
 		{
-			mst[i]+=wageArray[i];
+
+			mstList[i]+=wageArray[i];
 			visitS[indexVisitE]=true;
 			visitE[indexVisitE]=true;
 
 		}
-	}
-	for(int i=0;i<edgeCount;i++)
+	}*/
+	for(int i=0;i<edgeCount;i++)cout << startIdx[i]<< " " ;
+	cout << endl;
+	for(int i=0;i<edgeCount;i++)cout << endIdx[i]<< " " ;
+	//cout << endl;
+	//for(int i=0;i<edgeCount;i++)cout << wageArray[i]<< " " ;
+
+for(int i=0;i<edgeCount;i++)
+{
+	int ins=startIdx[i];
+	int ine=endIdx[i];
+	if(!visitS[ins] || !visitE[ine])
 	{
-		if(!visitE)
-		{
-			cout << startIdx<<endl;
-			cout << endIdx<<endl;
-		}
+		visitS[ins]=true;
+		visitE[ine]=true;
+
 	}
 
+}
+cout << endl;
+for(int i=0;i<edgeCount;i++) cout << visitS[i]<< " ";
+cout << endl;
+for(int i=0;i<edgeCount;i++) cout << visitE[i]<< " ";
 	return true;
 }
+
+
