@@ -97,25 +97,32 @@ bool Kruskal::makeAlgo(const AdjacencyMatrix& am)
 	for(int i=0;i<edgeCount;i++)cout << startIdx[i]<< " " ;
 	cout << endl;
 	for(int i=0;i<edgeCount;i++)cout << endIdx[i]<< " " ;
-	//cout << endl;
+	cout << endl;
 	//for(int i=0;i<edgeCount;i++)cout << wageArray[i]<< " " ;
 
 for(int i=0;i<edgeCount;i++)
 {
 	int ins=startIdx[i];
 	int ine=endIdx[i];
-	if(!visitS[ins] || !visitE[ine])
+	if(visitS[ins]==1 && visitE[ine]==1)
+	{
+		startIdx[i]=-1;
+		ine=endIdx[i]=-1;
+
+	}else
 	{
 		visitS[ins]=true;
 		visitE[ine]=true;
-
 	}
 
 }
-cout << endl;
-for(int i=0;i<edgeCount;i++) cout << visitS[i]<< " ";
-cout << endl;
-for(int i=0;i<edgeCount;i++) cout << visitE[i]<< " ";
+//cout << endl;
+//for(int i=0;i<edgeCount;i++) cout << visitS[i]<< " ";
+//cout << endl;
+//for(int i=0;i<edgeCount;i++) cout << visitE[i]<< " ";
+for(int i=0;i<edgeCount;i++)cout << startIdx[i]<< " " ;
+	cout << endl;
+	for(int i=0;i<edgeCount;i++)cout << endIdx[i]<< " " ;
 	return true;
 }
 
