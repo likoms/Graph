@@ -8,12 +8,12 @@
 #include "Kruskal.h"
 
 Kruskal::Kruskal() {
-	// TODO Auto-generated constructor stub
+
 
 }
 
 Kruskal::~Kruskal() {
-	// TODO Auto-generated destructor stub
+
 }
 
 bool Kruskal::makeAlgo(const AdjacencyMatrix& am)
@@ -104,15 +104,16 @@ for(int i=0;i<edgeCount;i++)
 {
 	int ins=startIdx[i];
 	int ine=endIdx[i];
-	if(visitS[ins]==1 && visitE[ine]==1)
-	{
-		startIdx[i]=-1;
-		ine=endIdx[i]=-1;
-
-	}else
+	if(!visitS[ins] || !visitE[ine])
 	{
 		visitS[ins]=true;
 		visitE[ine]=true;
+
+
+	}else
+	{
+		startIdx[i]=-1;
+		endIdx[i]=-1;
 	}
 
 }
